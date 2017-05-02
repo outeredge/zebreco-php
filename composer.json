@@ -1,0 +1,16 @@
+{
+    "name": "outeredge/zebreco-php",
+    "type": "library",
+    "description": "A PHP library for the Zebreco API.",
+    "homepage": "https://github.com/outeredge/zebreco-php",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.5.0",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ZebrecoPHP\\": "src/"
+        }
+    }
+}
