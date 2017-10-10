@@ -53,6 +53,9 @@ class Api
     {
         $request = ['auth' => [$this->user, $this->password]];
         switch ($type) {
+            case 'GET':
+                $request = array_merge($request, $data);
+                break;
             case 'POST':
             case 'PATCH':
             case 'PUT':
@@ -62,12 +65,12 @@ class Api
         return $this->client->request($type, $this->endpoint, $request);
     }
 
-    public function getList()
+    public function getList($data = [])
     {
-        return $this->respond($this->request('GET'));
+        return $this->respond($this->request('GET', $data));
     }
 
-    public function create($data = array())
+    public function create($data = [])
     {
         if (!empty($data)) {
             return $this->respond($this->request('POST', $data));
@@ -75,7 +78,7 @@ class Api
         return false;
     }
 
-    public function update($data = array())
+    public function update($data = [])
     {
         if (!empty($data)) {
             return $this->respond($this->request('PATCH', $data));
