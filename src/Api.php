@@ -1,6 +1,6 @@
 <?php
 
-namespace Zebreco;
+namespace ZebrecoPHP;
 
 use GuzzleHttp\Client;
 
