@@ -93,7 +93,6 @@ class Api
 
     protected function getBaseUri()
     {
-//        return 'https://' . $this->account . '.zebreco.com/api/v1/';
-        return 'http://minlare.zebreco.localhost/api/v1/';
+        return 'https://' . $this->account . '.zebreco.com/api/v1/';
     }
 }
