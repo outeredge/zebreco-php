@@ -57,6 +57,8 @@ class Api
                 $request = array_merge($request, $data);
                 break;
             case 'POST':
+                $request['json'] = [$this->endpoint => $data];
+                break;
             case 'PATCH':
             case 'PUT':
                 $request['json'] = [$this->endpoint . 's' => $data];
@@ -77,7 +79,7 @@ class Api
         }
         return false;
     }
-
+    
     public function update($data = [])
     {
         if (!empty($data)) {
