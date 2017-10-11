@@ -49,7 +49,7 @@ class Api
         ]);
     }
 
-    protected function request($type, $data = [])
+    protected function request($type, $data = [], $endpoint = null)
     {
         $request = ['auth' => [$this->user, $this->password]];
         switch ($type) {
@@ -64,7 +64,7 @@ class Api
                 $request['json'] = [$this->endpoint . 's' => $data];
                 break;
         }
-        return $this->client->request($type, $this->endpoint, $request);
+        return $this->client->request($type, $endpoint ?: $this->endpoint, $request);
     }
 
     public function getList($data = [])
@@ -72,13 +72,12 @@ class Api
         return $this->respond($this->request('GET', $data));
     }
     
-    public function get($id)
+    public function get($id, $data = [])
     {
-        $endpoint = $this->endpoint;
-        $this->endpoint = $endpoint . '/' . $id;
-        $response = $this->respond($this->request('GET'));
-        $this->endpoint = $endpoint;
-        return $response;
+        if ($id) {
+            return $this->respond($this->request('GET', $data, $this->endpoint . '/' . $id));
+        }
+        return $this->getList($data);
     }
 
     public function create($data = [])
