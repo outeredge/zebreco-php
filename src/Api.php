@@ -57,11 +57,9 @@ class Api
                 $request = array_merge($request, $data);
                 break;
             case 'POST':
-                $request['json'] = $data;
-                break;
             case 'PATCH':
             case 'PUT':
-                $request['json'] = [$this->endpoint . 's' => $data];
+                $request['json'] = $data;
                 break;
         }
         return $this->client->request($type, $endpoint ?: $this->endpoint, $request);
